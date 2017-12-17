@@ -26,6 +26,16 @@ void testDivide(int (*divide)(int a, int b), int a, int b){
   cout << divide(a,b) << endl;
 }
 
+// Create function that allows us to run any divide method
+void divideRun(function<int(int, int)> func)
+{
+  cout << func(500,3) << endl;
+}
+
+int divideSimple(int a, int b){
+  return a/b;
+}
+
 int main() {
 
   // Define a simple lambda function
@@ -67,4 +77,16 @@ int main() {
   // Capture this within class
   CaptureClass c;
   c.run();
+
+  // Run divide with standard function type
+  divideRun(divideFunc);
+  divideRun(divideSimple);
+
+  // Capture with mutable keyword
+  int number = 5;
+  [number]() mutable {
+    number += 10;
+    cout << number << endl;
+  }();
+  cout << number << endl;
 }
