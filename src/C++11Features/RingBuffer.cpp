@@ -36,6 +36,11 @@ public:
     return data[idx];
   }
 
+  // Get reference to ring buffer element
+  T& operator[](int idx){
+    return data[idx];
+  }
+
   // Add element to ring buffer
   void addElement(const T input){
     data[pos++] = input;
